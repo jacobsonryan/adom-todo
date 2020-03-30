@@ -1,0 +1,174 @@
+var list = []
+var item = ''
+var day = ''
+var date = ''
+var month = ''
+var counter = ''
+var styles = file 'index.css'
+var dark = false
+
+--
+
+list = JSON.parse(localStorage.getItem("items")) || []
+counter = JSON.parse(localStorage.getItem("counter")) || 0
+
+function onChange (e) {
+    item = e.target.value
+}
+
+function addItem () {
+    if (item) {
+        list.push({
+            text: item,
+            write: false,
+            complete: false
+        })
+        counter += 1
+        localStorage.setItem("items", JSON.stringify(list))
+        localStorage.setItem("counter", JSON.stringify(counter))       
+    }
+    item = ''
+}
+
+function keyDown(e) {
+    if(e.keyCode == 13) {
+        addItem()
+    }
+}
+
+function edit (i, el) {
+    if(list[i].write === false) {
+        list[i].write = true
+        let parent = el.parentNode
+        $sync()
+        parent.querySelector('input').focus()
+    }
+}
+
+function focusOut (item, e) {
+    if (e.keyCode == 13) {
+        item.write = false
+    }
+    item.text = e.target.value
+    localStorage.setItem("items", JSON.stringify(list))
+}
+
+function deleteItem (i) {
+    list.splice(i, 1)
+    counter -= 1
+    localStorage.setItem("items", JSON.stringify(list)) 
+    localStorage.setItem("counter", JSON.stringify(counter))         
+}
+
+function clearItems() {
+    list = []
+    counter = 0
+    item = ''
+    localStorage.setItem("items", JSON.stringify(list))
+    localStorage.setItem("counter", JSON.stringify(counter))          
+}
+
+function complete (i) {
+    list[i].complete = !list[i].complete
+    localStorage.setItem("items", JSON.stringify(list))
+}
+
+function clickOut (item, e) {
+    item.text = e.target.value
+    item.write = false
+    localStorage.setItem("items", JSON.stringify(list))
+}
+
+let current_date = new Date()
+day = current_date.getDay()
+if (day === 0) {
+    day = 'Sunday'
+} else if (day === 1) {
+    day = 'Monday'
+} else if (day === 2) {
+    day = 'Tuesday'
+} else if (day === 3) {
+    day = 'Wednesday'
+} else if (day === 4) {
+    day = 'Thursday'
+} else if (day === 5) {
+    day = 'Friday'
+} else if (day === 6) {
+    day = 'Saturday'
+}
+
+month = current_date.getMonth()
+if (month === 0) {
+    month = 'January'
+} else if (month === 1) {
+    month = 'February'
+} else if (month === 2) {
+    month = 'March'
+} else if (month === 3) {
+    month = 'April'
+} else if (month === 4) {
+    month = 'May'
+} else if (month === 5) {
+    month = 'June'
+} else if (month === 6) {
+    month = 'July'
+} else if (month === 7) {
+    month = 'August'
+} else if (month === 8) {
+    month = 'September'
+} else if (month === 9) {
+    month = 'October'
+} else if (month === 10) {
+    month = 'November'
+} else if (month === 11) {
+    month = 'December'
+}
+
+date = current_date.getDate()
+
+--
+
+html [
+    head [ 
+        style '{{styles}}'
+        link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" []
+        script src="https://kit.fontawesome.com/5d72bc9eac.js" crossorigin="anonymous" []
+    ]
+    
+    body root [
+        div class='{{dark ? "dark" : "light"}} background' [
+            div.container [ 
+                h1 'To-Do List'
+                p ['written with ' a href="https://github.com/mllev/a.dom" 'a.dom']
+                div.display [
+                    p.date style="padding: 5px 5px 5px 0px; margin: 5px 5px 5px 0px;"'{{day}}, {{month}} {{date}}'
+                    p.count style="padding: 5px; margin: 5px;" "Tasks: {{counter}}"
+                ]
+                div.header [
+                    input class='{{dark ? "dark" : "light"}} search' placeholder='Enter Task...' value={item} on:input='onChange($e)' on:keydown='keyDown($e)' type="text" spellcheck="false" []
+                    div.icons [
+                        i.fa.fa-paper-plane.fa-lg on:click='addItem()' []
+                        i.far.fa-trash-alt.clear.fa-lg on:click='clearItems()' []
+                        i.far.fa-lightbulb.fa-lg on:click='dark = !dark' []
+                    ]
+                ]
+                ul [
+                    each (item, i in list) [
+                        li class='{{dark ? "dark" : "light"}}' style='color:{{item.complete ? "#16a085" : "dark"}}; text-decoration:{{item.complete ? "line-through" : "none"}}' [
+                            
+                            if (item.write) [
+                                input class='{{dark ? "dark" : "light"}} edit' on:focusout='clickOut(item, $e)' on:keydown='focusOut(item, $e)' value={item.text} type="text" spellcheck="false" []    
+                            ] else [
+                                span on:click='edit(i, $e.target)' nosync '{{item.text}}'
+                            ]
+                            div.icons-two [
+                                i.fa.fa-check.check on:click='complete(i)' []
+                                i.fa.fa-times.trash on:click='deleteItem(i)' []
+                            ]
+                        ]
+                    ]
+                ]  
+            ]
+        ]
+    ]
+]

@@ -1,0 +1,1 @@
+adom --dev -r /=index.adom

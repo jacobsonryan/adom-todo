@@ -1,0 +1,457 @@
+<html><head><style>body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    user-select: none;
+}
+
+.dark {
+    background-color: #292929;
+    color: #f2f2f2;
+    border-bottom: 0.5px solid #f2f2f2;
+}
+
+.light {
+    background-color: #f2f2f2;
+    color: black;
+    border-bottom: 0.5px solid black;
+}
+
+.complete {
+    color: green;
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    transition: all 200ms ease-in;
+}
+
+h1 {
+    padding-top: 15px;
+}
+
+p {
+    padding-bottom: 15px;;
+}
+
+h1, p {
+    margin: 0px;
+    text-align: center;
+}
+
+.search {
+    width: 500px;
+    word-wrap: wrap;
+    padding: 5px 0px 15px 0px;
+}
+
+.edit {
+    border: none;
+    width: 400px;
+}
+
+.fa-lightbulb {
+    cursor: pointer;
+    margin: 5px;
+}
+
+.clear {
+    margin: 5px;
+    cursor: pointer;
+}
+
+.fa-paper-plane {
+    cursor: pointer;
+    color: #2980b9;
+    margin: 5px;
+}
+
+.icons {
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.date, .count {
+    padding: 0;
+}
+
+.display {
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 20px;
+    padding-left: 0;
+    width: 100%;
+}
+
+li {
+    cursor: pointer;
+    padding: 20px 0;
+    align-items: center;
+    margin: 20px 0;
+    transition: all 200ms ease-in;
+    border-bottom: 0.5px solid black;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+.trash {
+    float: right;
+    color: #e74c3c;
+    margin: 0 10px 0 10px;
+}
+
+.check {
+    float: right;
+    color: #16a085;
+    margin: 0 10px 0 10px;
+}
+
+.icons-two {
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input {
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    transition: all 200ms ease-in;
+}
+
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"><script src="https://kit.fontawesome.com/5d72bc9eac.js" crossorigin="anonymous"></script></head><script>window.onload = function () {
+  var $$adom_state = {"list":[],"item":"","day":"","date":"","month":"","counter":"","styles":"body {\r\n    margin: 0;\r\n    padding: 0;\r\n    font-family: 'Quicksand', sans-serif;\r\n    user-select: none;\r\n}\r\n\r\n.dark {\r\n    background-color: #292929;\r\n    color: #f2f2f2;\r\n    border-bottom: 0.5px solid #f2f2f2;\r\n}\r\n\r\n.light {\r\n    background-color: #f2f2f2;\r\n    color: black;\r\n    border-bottom: 0.5px solid black;\r\n}\r\n\r\n.complete {\r\n    color: green;\r\n}\r\n\r\n.background {\r\n    width: 100%;\r\n    height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    transition: all 200ms ease-in;\r\n}\r\n\r\nh1 {\r\n    padding-top: 15px;\r\n}\r\n\r\np {\r\n    padding-bottom: 15px;;\r\n}\r\n\r\nh1, p {\r\n    margin: 0px;\r\n    text-align: center;\r\n}\r\n\r\n.search {\r\n    width: 500px;\r\n    word-wrap: wrap;\r\n    padding: 5px 0px 15px 0px;\r\n}\r\n\r\n.edit {\r\n    border: none;\r\n    width: 400px;\r\n}\r\n\r\n.fa-lightbulb {\r\n    cursor: pointer;\r\n    margin: 5px;\r\n}\r\n\r\n.clear {\r\n    margin: 5px;\r\n    cursor: pointer;\r\n}\r\n\r\n.fa-paper-plane {\r\n    cursor: pointer;\r\n    color: #2980b9;\r\n    margin: 5px;\r\n}\r\n\r\n.icons {\r\n    float: right;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    padding: 5px;\r\n}\r\n\r\n.header {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n}\r\n\r\n.date, .count {\r\n    padding: 0;\r\n}\r\n\r\n.display {\r\n    display: flex;\r\n    padding: 0;\r\n    justify-content: space-between;\r\n}\r\n\r\nul {\r\n    list-style-type: none;\r\n    font-size: 20px;\r\n    padding-left: 0;\r\n    width: 100%;\r\n}\r\n\r\nli {\r\n    cursor: pointer;\r\n    padding: 20px 0;\r\n    align-items: center;\r\n    margin: 20px 0;\r\n    transition: all 200ms ease-in;\r\n    border-bottom: 0.5px solid black;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n    color: inherit;\r\n    font-weight: bold;\r\n}\r\n\r\n.trash {\r\n    float: right;\r\n    color: #e74c3c;\r\n    margin: 0 10px 0 10px;\r\n}\r\n\r\n.check {\r\n    float: right;\r\n    color: #16a085;\r\n    margin: 0 10px 0 10px;\r\n}\r\n\r\n.icons-two {\r\n    float: right;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\ninput {\r\n    padding: 0;\r\n    font-family: 'Quicksand', sans-serif;\r\n    font-size: 20px;\r\n    outline: none;\r\n    border: none;\r\n    transition: all 200ms ease-in;\r\n}\r\n\r\n","dark":false};
+  
+  var $$processed = [];
+  var $$firstSync = true;
+  var $$syncing = false;
+  var $$props = [];
+
+  function $$push_props (props) {
+    $$props.push(props);
+  }
+
+  function $$pop_props () {
+    $$props.pop();
+  }
+
+  function $$addEventListeners (node, events) {
+      var keys = Object.keys(events);
+      if (!node.__eventRefs) node.__eventRefs = {};
+      keys.forEach(function (event) {
+          if (node.__eventRefs[event]) {
+            node.removeEventListener(event, node.__eventRefs[event]);
+          }
+          node.addEventListener(event, events[event]);
+          node.__eventRefs[event] = events[event];
+      })
+  }
+
+  function $$if (cond, condIf, condElse) {
+      if (cond) condIf();
+      else if (condElse) condElse();
+  }
+
+  function $$each (list, fn) {
+      if (Array.isArray(list)) {
+          for (var i = 0; i < list.length; i++) {
+              fn(list[i], i);
+          }
+      } else if (typeof list === 'object') {
+          var keys = Object.keys(list);
+          for (var i = 0; i < keys.length; i++) {
+              fn(keys[i], list[keys[i]]);
+          }
+      } else {
+          throw new Error(list + ' is not iterable');
+      }
+  }
+
+  function $$clean (node) {
+      var num = $$processed[$$processed.length - 1];
+      while (node.childNodes[num]) {
+          var out = node.childNodes[num];
+          if (out.__adomState && out.__adomState.unmount) {
+            out.__adomState.unmount();
+          }
+          node.removeChild(out);
+      }
+  }
+
+  function $$create (type, props, events, state) {
+      var node;
+      if (type === 'text') node = document.createTextNode(props(state));
+      else {
+          node = document.createElement(type);
+          $$attr(node, props(state));
+      }
+      if (state) {
+        node.__adomState = state;
+        if (state.mount) {
+          state.mount();
+        }
+      }
+      if (events) $$addEventListeners(node, events);
+      return node;
+  }
+
+  function $$attr (node, props) {
+      Object.keys(props).forEach(function (p) {
+          var a = props[p];
+          if (p === 'events') return;
+          var v = (a && a.constructor === Array) ? a.join(' ') : a;
+          if (p in node) {
+              node[p] = v;
+          } else if (v === false || v == null) {
+              node.removeAttribute(at);
+          } else {
+              node.setAttribute(p, v);
+          }
+      });
+  }
+
+  function $$class (C, obj) {
+    if (!C) return obj;
+    var i = new C();
+    Object.keys(obj).forEach(function (k) {
+      i[k] = obj[k];
+    });
+    return i;
+  }
+
+  function $$e (par, type, props, events, state, children) {
+      var index = $$processed[$$processed.length - 1]++;
+      var node = par.childNodes[index];
+      if (!node) {
+          node = $$create(type, props, events, state);
+          par.appendChild(node);
+      } else if (type === 'text' && node.nodeType === Node.TEXT_NODE) {
+          node.nodeValue = props(node.__adomState || state);
+      } else if (node.tagName && (type === node.tagName.toLowerCase())) {
+          if (state && !node.__adomState) node.__adomState = state;
+          $$attr(node, props(node.__adomState));
+          if (events) $$addEventListeners(node, events);
+      } else {
+          var out = node;
+          node = $$create(type, props, events, state);
+          if (out.__adomState && out.__adomState.unmount) {
+            out.__adomState.unmount();
+          }
+          par.replaceChild(node, out);
+      }
+      if (children) {
+          $$processed.push(0);
+          children(node, node.__adomState || null);
+          $$clean(node);
+          $$processed.pop();
+      }
+  }
+  
+  (function (list, item, day, date, month, counter, styles, dark) {
+  
+  function $sync() {
+    if ($$syncing === false) {
+      $$syncing = true;
+      var par = window["adom-root-202"];
+      var $ = undefined;
+      //console.time('sync');
+      $$processed.push(0);
+          $$e(par, "div", function ($) { return (function () { return {"class": "" + (dark ? "dark" : "light") + " background"}; }).call($, ); }, null, null, function (par) { (function () {
+        $$e(par, "div", function ($) { return (function () { return {"class": ["container"]}; }).call($, ); }, null, null, function (par) { (function () {
+            $$e(par, "h1", function ($) { return (function () { return {}; }).call($, ); }, null, null, function (par) { (function () {
+                $$e(par, "text", function () { return "To-Do List"; })
+            })(); });
+            $$e(par, "p", function ($) { return (function () { return {}; }).call($, ); }, null, null, function (par) { (function () {
+                $$e(par, "text", function () { return "written with "; })
+                $$e(par, "a", function ($) { return (function () { return {"href": "https://github.com/mllev/a.dom"}; }).call($, ); }, null, null, function (par) { (function () {
+                    $$e(par, "text", function () { return "a.dom"; })
+                })(); });
+            })(); });
+            $$e(par, "div", function ($) { return (function () { return {"class": ["display"]}; }).call($, ); }, null, null, function (par) { (function () {
+                $$e(par, "p", function ($) { return (function () { return {"style": "padding: 5px 5px 5px 0px; margin: 5px 5px 5px 0px;", "class": ["date"]}; }).call($, ); }, null, null, function (par) { (function () {
+                    $$e(par, "text", function () { return "" + day + ", " + month + " " + date + ""; })
+                })(); });
+                $$e(par, "p", function ($) { return (function () { return {"style": "padding: 5px; margin: 5px;", "class": ["count"]}; }).call($, ); }, null, null, function (par) { (function () {
+                    $$e(par, "text", function () { return "Tasks: " + counter + ""; })
+                })(); });
+            })(); });
+            $$e(par, "div", function ($) { return (function () { return {"class": ["header"]}; }).call($, ); }, null, null, function (par) { (function () {
+                $$e(par, "input", function ($) { return (function () { return {"class": "" + (dark ? "dark" : "light") + " search", "placeholder": "Enter Task...", "value": item, "type": "text", "spellcheck": "false"}; }).call($, ); }, {"input": function ($e) { (function ($) { (function () { onChange($e); {}; $sync() }).call($) })($e.target.__adomState || $); },"keydown": function ($e) { (function ($) { (function () { keyDown($e); {}; $sync() }).call($) })($e.target.__adomState || $); }}, null);
+                $$e(par, "div", function ($) { return (function () { return {"class": ["icons"]}; }).call($, ); }, null, null, function (par) { (function () {
+                    $$e(par, "i", function ($) { return (function () { return {"class": ["fa", "fa-paper-plane", "fa-lg"]}; }).call($, ); }, {"click": function ($e) { (function ($) { (function () { addItem(); {}; $sync() }).call($) })($e.target.__adomState || $); }}, null);
+                    $$e(par, "i", function ($) { return (function () { return {"class": ["far", "fa-trash-alt", "clear", "fa-lg"]}; }).call($, ); }, {"click": function ($e) { (function ($) { (function () { clearItems(); {}; $sync() }).call($) })($e.target.__adomState || $); }}, null);
+                    $$e(par, "i", function ($) { return (function () { return {"class": ["far", "fa-lightbulb", "fa-lg"]}; }).call($, ); }, {"click": function ($e) { (function ($) { (function () { dark = !dark; {}; $sync() }).call($) })($e.target.__adomState || $); }}, null);
+                })(); });
+            })(); });
+            $$e(par, "ul", function ($) { return (function () { return {}; }).call($, ); }, null, null, function (par) { (function () {
+$$each(list, function (item, i) {
+                    $$e(par, "li", function ($) { return (function () { return {"class": "" + (dark ? "dark" : "light") + "", "style": "color:" + (item["complete"] ? "#16a085" : "dark") + "; text-decoration:" + (item["complete"] ? "line-through" : "none") + ""}; }).call($, ); }, null, null, function (par) { (function () {
+                        $$if(item["write"], function () {
+                            $$e(par, "input", function ($) { return (function () { return {"class": "" + (dark ? "dark" : "light") + " edit", "value": item["text"], "type": "text", "spellcheck": "false"}; }).call($, ); }, {"focusout": function ($e) { (function ($) { (function () { clickOut(item, $e); {}; $sync() }).call($) })($e.target.__adomState || $); },"keydown": function ($e) { (function ($) { (function () { focusOut(item, $e); {}; $sync() }).call($) })($e.target.__adomState || $); }}, null);
+                        }, function () {
+                            $$e(par, "span", function ($) { return (function () { return {}; }).call($, ); }, {"click": function ($e) { (function ($) { (function () { edit(i, $e.target); {};  }).call($) })($e.target.__adomState || $); }}, null, function (par) { (function () {
+                                $$e(par, "text", function () { return "" + item["text"] + ""; })
+                            })(); });
+                        });
+                        $$e(par, "div", function ($) { return (function () { return {"class": ["icons-two"]}; }).call($, ); }, null, null, function (par) { (function () {
+                            $$e(par, "i", function ($) { return (function () { return {"class": ["fa", "fa-check", "check"]}; }).call($, ); }, {"click": function ($e) { (function ($) { (function () { complete(i); {}; $sync() }).call($) })($e.target.__adomState || $); }}, null);
+                            $$e(par, "i", function ($) { return (function () { return {"class": ["fa", "fa-times", "trash"]}; }).call($, ); }, {"click": function ($e) { (function ($) { (function () { deleteItem(i); {}; $sync() }).call($) })($e.target.__adomState || $); }}, null);
+                        })(); });
+                    })(); });
+});
+            })(); });
+        })(); });
+    })(); });
+      $$clean(par);
+      $$processed.pop();
+      //console.timeEnd('sync');
+      $$firstSync = false;
+      $$syncing = false;
+    }
+  }
+      
+
+
+list = JSON.parse(localStorage.getItem("items")) || []
+counter = JSON.parse(localStorage.getItem("counter")) || 0
+
+function onChange (e) {
+    item = e.target.value
+}
+
+function addItem () {
+    if (item) {
+        list.push({
+            text: item,
+            write: false,
+            complete: false
+        })
+        counter += 1
+        localStorage.setItem("items", JSON.stringify(list))
+        localStorage.setItem("counter", JSON.stringify(counter))       
+    }
+    item = ''
+}
+
+function keyDown(e) {
+    if(e.keyCode == 13) {
+        addItem()
+    }
+}
+
+function edit (i, el) {
+    if(list[i].write === false) {
+        list[i].write = true
+        let parent = el.parentNode
+        $sync()
+        parent.querySelector('input').focus()
+    }
+}
+
+function focusOut (item, e) {
+    if (e.keyCode == 13) {
+        item.write = false
+    }
+    item.text = e.target.value
+    localStorage.setItem("items", JSON.stringify(list))
+}
+
+function deleteItem (i) {
+    list.splice(i, 1)
+    counter -= 1
+    localStorage.setItem("items", JSON.stringify(list)) 
+    localStorage.setItem("counter", JSON.stringify(counter))         
+}
+
+function clearItems() {
+    list = []
+    counter = 0
+    item = ''
+    localStorage.setItem("items", JSON.stringify(list))
+    localStorage.setItem("counter", JSON.stringify(counter))          
+}
+
+function complete (i) {
+    list[i].complete = !list[i].complete
+    localStorage.setItem("items", JSON.stringify(list))
+}
+
+function clickOut (item, e) {
+    item.text = e.target.value
+    item.write = false
+    localStorage.setItem("items", JSON.stringify(list))
+}
+
+let current_date = new Date()
+day = current_date.getDay()
+if (day === 0) {
+    day = 'Sunday'
+} else if (day === 1) {
+    day = 'Monday'
+} else if (day === 2) {
+    day = 'Tuesday'
+} else if (day === 3) {
+    day = 'Wednesday'
+} else if (day === 4) {
+    day = 'Thursday'
+} else if (day === 5) {
+    day = 'Friday'
+} else if (day === 6) {
+    day = 'Saturday'
+}
+
+month = current_date.getMonth()
+if (month === 0) {
+    month = 'January'
+} else if (month === 1) {
+    month = 'February'
+} else if (month === 2) {
+    month = 'March'
+} else if (month === 3) {
+    month = 'April'
+} else if (month === 4) {
+    month = 'May'
+} else if (month === 5) {
+    month = 'June'
+} else if (month === 6) {
+    month = 'July'
+} else if (month === 7) {
+    month = 'August'
+} else if (month === 8) {
+    month = 'September'
+} else if (month === 9) {
+    month = 'October'
+} else if (month === 10) {
+    month = 'November'
+} else if (month === 11) {
+    month = 'December'
+}
+
+date = current_date.getDate()
+
+  $sync();
+})($$adom_state.list, $$adom_state.item, $$adom_state.day, $$adom_state.date, $$adom_state.month, $$adom_state.counter, $$adom_state.styles, $$adom_state.dark)
+}</script><style></style><body id="adom-root-202"><div class="light background"><div class="container"><h1>To-Do List</h1><p>written with <a href="https://github.com/mllev/a.dom">a.dom</a></p><div class="display"><p style="padding: 5px 5px 5px 0px; margin: 5px 5px 5px 0px;" class="date">,  </p><p style="padding: 5px; margin: 5px;" class="count">Tasks: </p></div><div class="header"><input class="light search" placeholder="Enter Task..." value="" type="text" spellcheck="false"><div class="icons"><i class="fa fa-paper-plane fa-lg"></i><i class="far fa-trash-alt clear fa-lg"></i><i class="far fa-lightbulb fa-lg"></i></div></div><ul></ul></div></div></body></html>
